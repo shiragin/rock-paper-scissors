@@ -1,14 +1,14 @@
 "use strict";
 
 // Makes sure the playerChoice string is all lowercase except first letter to properly match the choice array
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 // Propmpt the player to chooce between rock paper and scissors and returns the choice
 function getPlayerChoice() {
     let playerChoice = prompt("Choose - Paper, Rock or Scissors?");
-    playerChoice = capitalizeFirstLetter(playerChoice);
+    playerChoice = capitaliseFirstLetter(playerChoice);
     if (!choice.includes(playerChoice)) {
         console.log("Your choice was invalid. Please choose again.");
         return getPlayerChoice();
