@@ -27,14 +27,14 @@ function playRound(playerChoice, computerChoice) {
     console.log(`You chose... ${playerChoice}!`);
     console.log(`The evil computer chose... ${computerChoice}!`);
     if (playerChoice === computerChoice) {
-        return `${playerChoice} vs. ${computerChoice}! It's a draw!`;
+        return "draw";
     } else if (
         (playerChoice === "Rock" && computerChoice === "Scissors") ||
         (playerChoice === "Scissors" && computerChoice === "Paper") || (playerChoice === "Paper" && computerChoice === "Rock")
     ) {
-        return `${playerChoice} vs. ${computerChoice}! You win!`;
+        return "player";
     } else {
-        return `${playerChoice} vs. ${computerChoice}! You lose!`;
+        return "computer";
     }
 }
 
@@ -60,12 +60,40 @@ function playRound(playerChoice, computerChoice) {
 //     }
 // }
 
+function anounceWinner(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        return `You beat the evil computer ${playerScore} to ${computerScore}! You win!`;
+    } else if (computerScore > playerScore) {
+        return `The evil computer beat you ${computerScore} to ${playerScore}! You lose!`;
+    } else {
+        return `${computerScore} to ${playerScore}! It's a draw!`;
+    }
+}
+
+function game() {
+    let playerChoice;
+    let computerChoice;
+    let playerScore = 0;
+    let computerScore = 0;
+    let roundResult;
+    for (let i = 0; i < 5; i++) {
+        playerChoice = getPlayerChoice();
+        computerChoice = getComputerChoice();
+        roundResult = playRound(playerChoice, computerChoice);
+        if (roundResult === "player") {
+            console.log(`${playerChoice} vs. ${computerChoice}! You win!`);
+            ++playerScore;
+        } else if (roundResult === "computer") {
+            console.log(`${playerChoice} vs. ${computerChoice}! You lose!`);
+            ++computerScore;
+        } else
+            console.log(`${playerChoice} vs. ${computerChoice}! It's a draw!`);
+    }
+    console.log(anounceWinner(playerScore, computerScore));
+}
 
 const choice = ["Rock", "Paper", "Scissors"];
-const playerChoice = getPlayerChoice();
-const computerChoice = getComputerChoice();
-
-console.log(playRound(playerChoice, computerChoice));
+game();
 
 
 
