@@ -38,28 +38,6 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-// Previous version of playround code - so clumsy!
-
-// if (playerChoice === "Rock") {
-//     if (computerChoice === "Paper") {
-//         return `${playerChoice} vs. ${computerChoice}! You lose!`;
-//     } else {
-//         return `${playerChoice} vs. ${computerChoice}! You win!`;
-//     }
-// } else if (playerChoice === "Paper") {
-//     if (computerChoice === "Rock") {
-//         return `${playerChoice} vs. ${computerChoice}! You win!`;
-//     } else {
-//         return `${playerChoice} vs. ${computerChoice}! You lose!`;
-//     }
-// } else {
-//     if (computerChoice === "Rock") {
-//         return `${playerChoice} vs. ${computerChoice}! You lose!`;
-//     } else {
-//         return `${playerChoice} vs. ${computerChoice}! You win!`;
-//     }
-// }
-
 // Compares playerScore with computerScore and returns a win/lose/draw message to game()
 function anounceWinner(playerScore, computerScore) {
     if (playerScore > computerScore) {
