@@ -86,8 +86,9 @@ function game() {
         } else if (roundResult === "computer") {
             console.log(`${playerChoice} vs. ${computerChoice}! You lose!`);
             ++computerScore;
-        } else
+        } else {
             console.log(`${playerChoice} vs. ${computerChoice}! It's a draw!`);
+        }
     }
     console.log(anounceWinner(playerScore, computerScore));
 }
