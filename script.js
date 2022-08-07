@@ -60,6 +60,7 @@ function playRound(playerChoice, computerChoice) {
 //     }
 // }
 
+// Compares playerScore with computerScore and returns a win/lose/draw message to game()
 function anounceWinner(playerScore, computerScore) {
     if (playerScore > computerScore) {
         return `You beat the evil computer ${playerScore} to ${computerScore}! You win!`;
@@ -70,6 +71,7 @@ function anounceWinner(playerScore, computerScore) {
     }
 }
 
+// The main game functions that runs 5 iterations of setting player/computer choices and then running a round and keeping tab on the scores
 function game() {
     let playerChoice;
     let computerChoice;
@@ -93,8 +95,6 @@ function game() {
     console.log(anounceWinner(playerScore, computerScore));
 }
 
+// Globals: the choice array and the invocation of the game function
 const choice = ["Rock", "Paper", "Scissors"];
 game();
-
-
-
