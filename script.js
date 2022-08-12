@@ -31,10 +31,27 @@ function anounceWinner(playerScore, computerScore) {
     } else {
         winner = `${computerScore} to ${playerScore}! It's a draw!`;
     }
-    let gameWinner = document.createElement('h1');
-    gameWinner.className = 'winner';
     gameWinner.textContent = winner;
     container.appendChild(gameWinner);
+}
+
+// Checks if the player wants to play again
+function playAgain() {
+    container.appendChild(replay);
+    replay.addEventListener('click', resetGame);
+}
+
+// Resets the game 
+
+function resetGame() {
+    container.removeChild(results);
+    results.textContent = '';
+    container.removeChild(gameWinner);
+    container.removeChild(replay);
+    roundNumber = 1;
+    playerScore = 0;
+    computerScore = 0;
+    buttons.addEventListener('click', playRound);
 }
 
 // Plays one round and displays choices
@@ -42,6 +59,7 @@ function anounceWinner(playerScore, computerScore) {
 function playRound(e) {
 
     // Gets the player choice from button press
+    console.log(e.target, e.target.textContent);
     if (e.target.nodeName !== 'BUTTON') return;
 
     let playerChoice = e.target.textContent;
@@ -78,7 +96,8 @@ function playRound(e) {
 
     if (roundNumber == 5) {
         anounceWinner(playerScore, computerScore);
-        buttons.forEach(button => removeEventListener('click', playRound));
+        buttons.removeEventListener('click', playRound);
+        playAgain();
     } else return roundNumber += 1;
 }
 
@@ -94,9 +113,17 @@ let computerScore = 0;
 
 // Create results div
 const container = document.querySelector('.container');
+
 const results = document.createElement('div');
 results.className = 'results';
 
+const gameWinner = document.createElement('h1');
+gameWinner.className = 'winner';
+
+const replay = document.createElement('button');
+replay.className = 'again';
+replay.textContent = 'Play again?';
+
 // Add event listener for all buttons
-const buttons = document.querySelectorAll('button.player');
-buttons.forEach(button => addEventListener('click', playRound));
+const buttons = document.querySelector('.buttons');
+buttons.addEventListener('click', playRound);
