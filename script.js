@@ -77,14 +77,27 @@ function game() {
 // Globals: the choice array and the invocation of the game function
 const choice = ["Rock", "Paper", "Scissors"];
 
+// Create results div
+const container = document.querySelector('.container');
+const results = document.createElement('div');
+results.className = 'results';
+
 // Add event listener for all buttons
-
 const buttons = document.querySelectorAll('button.player');
-
 buttons.forEach(button => addEventListener('click', playRound));
 
+// Plays one round and displays choices
+
 function playRound(e) {
-    let playerChoice = e.target.textContent.toLowerCase();
+    // Gets the player choice from button press
+    if (e.target.nodeName !== 'BUTTON') return;
+    let playerChoice = e.target.textContent;
+    // Displays the player choice
+    let playerResult = document.createElement('h3');
+    playerResult.className = 'player';
+    playerResult.textContent = `You chose... ${playerChoice}!`
+    container.appendChild(results);
+    results.appendChild(playerResult);
     console.log(playerChoice);
 }
 
