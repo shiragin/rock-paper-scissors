@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Roboto, sans-serif;
   box-sizing: border-box;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 h1 {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 900;
   color: #3A364A;
   text-align: center;
@@ -49,13 +49,14 @@ h1 {
 button.player,
 button.again {
   width: 120px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   padding: 15px 10px;
   background-color: #fff;
   margin: 10px 30px;
   cursor: pointer;
   border: 1px solid #3A364A;
+  border-radius: 10px;
 }
 
 button.player:hover,
@@ -71,15 +72,17 @@ button.again:hover {
   background-color: #fff;
   padding: 10px 20px;
   border: 1px solid #3A364A;
+  border-radius: 10px;
+  padding-top: 15px;
 }
 
 h3.player,
 h3.computer,
 h3.result {
   color: #111;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 1.6em;
+  line-height: 1.4em;
   padding: 0 5px;
 }
 
