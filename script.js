@@ -89,16 +89,28 @@ buttons.forEach(button => addEventListener('click', playRound));
 // Plays one round and displays choices
 
 function playRound(e) {
+
     // Gets the player choice from button press
     if (e.target.nodeName !== 'BUTTON') return;
     let playerChoice = e.target.textContent;
+
+    // Gets the computer choice for function
+    let computerChoice = getComputerChoice();
+
+    // Displays the results div
+    container.appendChild(results);
+
     // Displays the player choice
     let playerResult = document.createElement('h3');
     playerResult.className = 'player';
     playerResult.textContent = `You chose... ${playerChoice}!`
-    container.appendChild(results);
     results.appendChild(playerResult);
-    console.log(playerChoice);
+
+    // Displays the computer choice
+    let computerResult = document.createElement('h3');
+    computerResult.className = 'computer';
+    computerResult.textContent = `The evil computer chose... ${computerChoice}!`
+    results.appendChild(computerResult);
 }
 
 // game();
