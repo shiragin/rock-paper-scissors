@@ -56,20 +56,21 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     let roundResult;
-    for (let i = 0; i < 5; i++) {
-        playerChoice = getPlayerChoice();
-        computerChoice = getComputerChoice();
-        roundResult = playRound(playerChoice, computerChoice);
-        if (roundResult === "player") {
-            console.log(`${playerChoice} vs. ${computerChoice}! You win!`);
-            ++playerScore;
-        } else if (roundResult === "computer") {
-            console.log(`${playerChoice} vs. ${computerChoice}! You lose!`);
-            ++computerScore;
-        } else {
-            console.log(`${playerChoice} vs. ${computerChoice}! It's a draw!`);
-        }
+    // Temporarily remove the 5 rounds logic
+    // for (let i = 0; i < 5; i++) {
+    playerChoice = getPlayerChoice();
+    computerChoice = getComputerChoice();
+    roundResult = playRound(playerChoice, computerChoice);
+    if (roundResult === "player") {
+        console.log(`${playerChoice} vs. ${computerChoice}! You win!`);
+        ++playerScore;
+    } else if (roundResult === "computer") {
+        console.log(`${playerChoice} vs. ${computerChoice}! You lose!`);
+        ++computerScore;
+    } else {
+        console.log(`${playerChoice} vs. ${computerChoice}! It's a draw!`);
     }
+    // }
     console.log(anounceWinner(playerScore, computerScore));
 }
 
