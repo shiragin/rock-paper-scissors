@@ -76,4 +76,4 @@ function game() {
 
 // Globals: the choice array and the invocation of the game function
 const choice = ["Rock", "Paper", "Scissors"];
-game();
+// game();
