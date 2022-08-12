@@ -23,7 +23,7 @@ function getComputerChoice() {
 }
 
 // Plays one playRound, comparing the playerChoice and the computerChoice and returning the result
-function playRound(playerChoice, computerChoice) {
+function playRound2(playerChoice, computerChoice) {
     console.log(`You chose... ${playerChoice}!`);
     console.log(`The evil computer chose... ${computerChoice}!`);
     if (playerChoice === computerChoice) {
@@ -76,4 +76,16 @@ function game() {
 
 // Globals: the choice array and the invocation of the game function
 const choice = ["Rock", "Paper", "Scissors"];
+
+// Add event listener for all buttons
+
+const buttons = document.querySelectorAll('button.player');
+
+buttons.forEach(button => addEventListener('click', playRound));
+
+function playRound(e) {
+    let playerChoice = e.target.textContent.toLowerCase();
+    console.log(playerChoice);
+}
+
 // game();
