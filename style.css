@@ -57,16 +57,23 @@ button.player:hover {
   margin-top: 30px;
   background-color: #fff;
   padding: 10px 20px;
+  border: 1px solid #333;
 }
 
 h3.player,
-h3.computer {
+h3.computer,
+h3.result {
   color: #111;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.6em;
+  padding: 0 5px;
 }
 
-h3.computer {
+h3.result {
+  display: inline-block;
   margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: lightyellow;
 }

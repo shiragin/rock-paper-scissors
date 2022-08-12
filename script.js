@@ -22,19 +22,21 @@ function getComputerChoice() {
     return choice[Math.floor(Math.random() * choice.length)];
 }
 
-// Plays one playRound, comparing the playerChoice and the computerChoice and returning the result
-function playRound2(playerChoice, computerChoice) {
-    console.log(`You chose... ${playerChoice}!`);
-    console.log(`The evil computer chose... ${computerChoice}!`);
+// compare the playerChoice and the computerChoice and returning the result
+function roundWinner(playerChoice, computerChoice) {
+    // console.log(`You chose... ${playerChoice}!`);
+    // console.log(`The evil computer chose... ${computerChoice}!`);
     if (playerChoice === computerChoice) {
-        return "draw";
+        return `${playerChoice} vs. ${computerChoice}! It's a draw!`;
     } else if (
         (playerChoice === "Rock" && computerChoice === "Scissors") ||
         (playerChoice === "Scissors" && computerChoice === "Paper") || (playerChoice === "Paper" && computerChoice === "Rock")
     ) {
-        return "player";
+        ++playerScore;
+        return `${playerChoice} vs. ${computerChoice}! You win!`
     } else {
-        return "computer";
+        ++computerScore;
+        return `${playerChoice} vs. ${computerChoice}! You lose!`;
     }
 }
 
@@ -74,8 +76,15 @@ function game() {
     console.log(anounceWinner(playerScore, computerScore));
 }
 
-// Globals: the choice array and the invocation of the game function
+// Globals
+
+// Computer choice array 
 const choice = ["Rock", "Paper", "Scissors"];
+
+// Declares rounds counter, computer win, player win
+let roundNumber = 1;
+let playerScore = 0;
+let computerScore = 0;
 
 // Create results div
 const container = document.querySelector('.container');
@@ -85,6 +94,7 @@ results.className = 'results';
 // Add event listener for all buttons
 const buttons = document.querySelectorAll('button.player');
 buttons.forEach(button => addEventListener('click', playRound));
+
 
 // Plays one round and displays choices
 
@@ -96,6 +106,9 @@ function playRound(e) {
 
     // Gets the computer choice for function
     let computerChoice = getComputerChoice();
+
+    // Gets the round result 
+    let result = roundWinner(playerChoice, computerChoice);
 
     // Displays the results div
     container.appendChild(results);
@@ -111,6 +124,20 @@ function playRound(e) {
     computerResult.className = 'computer';
     computerResult.textContent = `The evil computer chose... ${computerChoice}!`
     results.appendChild(computerResult);
+
+    // Displays the round winner
+    let roundResult = document.createElement('h3');
+    roundResult.className = 'result';
+    roundResult.textContent = result;
+    results.appendChild(roundResult);
+
+    // Returns round number
+    console.log(roundNumber);
+    return roundNumber += 1;
+}
+
+if (roundNumber > 5) {
+
 }
 
 // game();
