@@ -5,7 +5,7 @@ function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-// Prompt the player to chooce between rock paper and scissors and returns the choice
+// Prompts the player to chooce between rock paper and scissors and returns the choice
 function getPlayerChoice() {
     let playerChoice = prompt("Choose - Paper, Rock or Scissors?");
     playerChoice = capitaliseFirstLetter(playerChoice);
