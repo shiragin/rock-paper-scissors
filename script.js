@@ -1,31 +1,12 @@
 "use strict";
 
-// Makes sure the playerChoice string is all lowercase except first letter to properly match the choice array
-function capitaliseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
-// Prompts the player to chooce between rock paper and scissors and returns the choice
-function getPlayerChoice() {
-    let playerChoice = prompt("Choose - Paper, Rock or Scissors?");
-    playerChoice = capitaliseFirstLetter(playerChoice);
-    if (!choice.includes(playerChoice)) {
-        console.log("Your choice was invalid. Please choose again.");
-        return getPlayerChoice();
-    } else {
-        return playerChoice;
-    }
-}
-
 // Randomly chooses the computerChoice out of the choice array
 function getComputerChoice() {
     return choice[Math.floor(Math.random() * choice.length)];
 }
 
-// compare the playerChoice and the computerChoice and returning the result
+// Compares the playerChoice and the computerChoice and returning the result
 function roundWinner(playerChoice, computerChoice) {
-    // console.log(`You chose... ${playerChoice}!`);
-    // console.log(`The evil computer chose... ${computerChoice}!`);
     if (playerChoice === computerChoice) {
         return `${playerChoice} vs. ${computerChoice}! It's a draw!`;
     } else if (
@@ -40,61 +21,21 @@ function roundWinner(playerChoice, computerChoice) {
     }
 }
 
-// Compares playerScore with computerScore and returns a win/lose/draw message to game()
+// Compares playerScore with computerScore and returns a win/lose/draw message
 function anounceWinner(playerScore, computerScore) {
+    let winner;
     if (playerScore > computerScore) {
-        return `You beat the evil computer ${playerScore} to ${computerScore}! You win!`;
+        winner = `You beat the evil computer ${playerScore} to ${computerScore}! You win!`;
     } else if (computerScore > playerScore) {
-        return `The evil computer beat you ${computerScore} to ${playerScore}! You lose!`;
+        winner = `The evil computer beat you ${computerScore} to ${playerScore}! You lose!`;
     } else {
-        return `${computerScore} to ${playerScore}! It's a draw!`;
+        winner = `${computerScore} to ${playerScore}! It's a draw!`;
     }
+    let gameWinner = document.createElement('h1');
+    gameWinner.className = 'winner';
+    gameWinner.textContent = winner;
+    container.appendChild(gameWinner);
 }
-
-// The main game functions that runs 5 iterations of setting player/computer choices and then running a round and keeping tab on the scores
-function game() {
-    let playerChoice;
-    let computerChoice;
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundResult;
-    // Temporarily remove the 5 rounds logic
-    // for (let i = 0; i < 5; i++) {
-    playerChoice = getPlayerChoice();
-    computerChoice = getComputerChoice();
-    roundResult = playRound(playerChoice, computerChoice);
-    if (roundResult === "player") {
-        console.log(`${playerChoice} vs. ${computerChoice}! You win!`);
-        ++playerScore;
-    } else if (roundResult === "computer") {
-        console.log(`${playerChoice} vs. ${computerChoice}! You lose!`);
-        ++computerScore;
-    } else {
-        console.log(`${playerChoice} vs. ${computerChoice}! It's a draw!`);
-    }
-    // }
-    console.log(anounceWinner(playerScore, computerScore));
-}
-
-// Globals
-
-// Computer choice array 
-const choice = ["Rock", "Paper", "Scissors"];
-
-// Declares rounds counter, computer win, player win
-let roundNumber = 1;
-let playerScore = 0;
-let computerScore = 0;
-
-// Create results div
-const container = document.querySelector('.container');
-const results = document.createElement('div');
-results.className = 'results';
-
-// Add event listener for all buttons
-const buttons = document.querySelectorAll('button.player');
-buttons.forEach(button => addEventListener('click', playRound));
-
 
 // Plays one round and displays choices
 
@@ -102,6 +43,7 @@ function playRound(e) {
 
     // Gets the player choice from button press
     if (e.target.nodeName !== 'BUTTON') return;
+
     let playerChoice = e.target.textContent;
 
     // Gets the computer choice for function
@@ -132,12 +74,29 @@ function playRound(e) {
     results.appendChild(roundResult);
 
     // Returns round number
-    console.log(roundNumber);
-    return roundNumber += 1;
+    console.log(roundNumber, playerScore, computerScore);
+
+    if (roundNumber == 5) {
+        anounceWinner(playerScore, computerScore);
+        buttons.forEach(button => removeEventListener('click', playRound));
+    } else return roundNumber += 1;
 }
 
-if (roundNumber > 5) {
+// Globals
 
-}
+// Computer choice array 
+const choice = ["Rock", "Paper", "Scissors"];
 
-// game();
+// Declares rounds counter, computer win, player win
+let roundNumber = 1;
+let playerScore = 0;
+let computerScore = 0;
+
+// Create results div
+const container = document.querySelector('.container');
+const results = document.createElement('div');
+results.className = 'results';
+
+// Add event listener for all buttons
+const buttons = document.querySelectorAll('button.player');
+buttons.forEach(button => addEventListener('click', playRound));
