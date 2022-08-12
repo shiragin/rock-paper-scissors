@@ -5,7 +5,9 @@
 }
 
 html {
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-image: url(img/main-edz-norton-unsplash.jpg);
+  background-size: cover;
+  background-position-y: -100px;
   background-repeat: no-repeat;
   height: 100vh;
 }
@@ -37,6 +39,7 @@ h1 {
 }
 
 button.player {
+  width: 120px;
   font-size: 20px;
   font-weight: 500;
   padding: 15px 15px;
