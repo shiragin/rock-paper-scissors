@@ -59,7 +59,6 @@ function resetGame() {
 function playRound(e) {
 
     // Gets the player choice from button press
-    console.log(e.target, e.target.textContent);
     if (e.target.nodeName !== 'BUTTON') return;
 
     let playerChoice = e.target.textContent;
@@ -92,7 +91,6 @@ function playRound(e) {
     results.appendChild(roundResult);
 
     // Returns round number
-    console.log(roundNumber, playerScore, computerScore);
 
     if (roundNumber == 5) {
         anounceWinner(playerScore, computerScore);
